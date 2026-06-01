@@ -1,7 +1,14 @@
 package com.aichat
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.aichat.di.AppContainer
 
-@HiltAndroidApp
-class AiChatApp : Application()
+class AiChatApp : Application() {
+    lateinit var container: AppContainer
+        private set
+
+    override fun onCreate() {
+        super.onCreate()
+        container = AppContainer(this)
+    }
+}

@@ -1,22 +1,22 @@
 package com.aichat.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.aichat.domain.model.AIProvider
 import com.aichat.domain.model.ApiKeyConfig
 import com.aichat.domain.model.ChatMessage
 import com.aichat.domain.model.Conversation
 import com.aichat.domain.model.MessageRole
+import com.aichat.domain.model.ThinkingIntensity
 import com.aichat.domain.repository.AiClientRepository
 import com.aichat.domain.repository.ApiKeyRepository
 import com.aichat.domain.repository.ChatRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.UUID
-import javax.inject.Inject
 
 data class ChatUiState(
     val conversations: List<Conversation> = emptyList(),
@@ -30,8 +30,7 @@ data class ChatUiState(
     val showThinkingOutput: Boolean = false
 )
 
-@HiltViewModel
-class ChatViewModel @Inject constructor(
+class ChatViewModel(
     private val chatRepository: ChatRepository,
     private val apiKeyRepository: ApiKeyRepository,
     private val aiClientRepository: AiClientRepository
@@ -135,9 +134,9 @@ class ChatViewModel @Inject constructor(
                     ApiKeyConfig.supportsThinking(conversation.provider)
 
                 val reasoningEffort = when (config.thinkingIntensity) {
-                    com.aichat.domain.model.ThinkingIntensity.LOW -> "low"
-                    com.aichat.domain.model.ThinkingIntensity.MEDIUM -> "medium"
-                    com.aichat.domain.model.ThinkingIntensity.HIGH -> "high"
+                    ThinkingIntensity.LOW -> "low"
+                    ThinkingIntensity.MEDIUM -> "medium"
+                    ThinkingIntensity.HIGH -> "high"
                 }
 
                 aiClientRepository.sendMessage(
@@ -210,5 +209,18 @@ class ChatViewModel @Inject constructor(
             currentConversation = null,
             messages = emptyList()
         )
+    }
+
+    companion object {
+        fun factory(
+            chatRepository: ChatRepository,
+            apiKeyRepository: ApiKeyRepository,
+            aiClientRepository: AiClientRepository
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return ChatViewModel(chatRepository, apiKeyRepository, aiClientRepository) as T
+            }
+        }
     }
 }
