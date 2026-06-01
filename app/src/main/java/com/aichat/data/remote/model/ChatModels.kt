@@ -8,7 +8,7 @@ data class ChatRequest(
     val model: String,
     val messages: List<ChatRequestMessage>,
     val stream: Boolean = true,
-    val temperature: Double = 0.7,
+    val temperature: Double? = 0.7,
     @SerialName("max_tokens") val maxTokens: Int? = null,
     @SerialName("max_completion_tokens") val maxCompletionTokens: Int? = null,
     val topP: Double? = null,
