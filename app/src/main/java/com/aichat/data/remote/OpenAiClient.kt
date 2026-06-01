@@ -3,6 +3,7 @@ package com.aichat.data.remote
 import com.aichat.data.remote.model.ChatRequest
 import com.aichat.data.remote.model.ChatRequestMessage
 import com.aichat.data.remote.model.ThinkingConfig
+import com.aichat.domain.model.AIProvider
 import com.aichat.domain.model.ChatMessage
 import com.aichat.domain.model.MessageRole
 import io.ktor.client.HttpClient
@@ -31,11 +32,14 @@ class OpenAiClient(private val httpClient: HttpClient) {
         baseUrl: String,
         modelName: String,
         messages: List<ChatMessage>,
+        provider: AIProvider,
         temperature: Float = 0.7f,
         maxTokens: Int = 4096,
         enableThinking: Boolean = false,
         reasoningEffort: String = "medium"
     ): Flow<StreamResult> = flow {
+        val isMiMo = provider == AIProvider.MIMO
+
         val request = ChatRequest(
             model = modelName,
             messages = messages.map {
@@ -49,9 +53,11 @@ class OpenAiClient(private val httpClient: HttpClient) {
                 )
             },
             temperature = if (enableThinking) 1.0 else temperature.toDouble(),
-            maxTokens = maxTokens,
+            maxTokens = if (isMiMo) null else maxTokens,
+            maxCompletionTokens = if (isMiMo) maxTokens else null,
+            topP = if (isMiMo) 0.95 else null,
             thinking = if (enableThinking) ThinkingConfig(type = "enabled") else null,
-            reasoningEffort = if (enableThinking) reasoningEffort else null
+            reasoningEffort = if (enableThinking && !isMiMo) reasoningEffort else null
         )
 
         val url = "$baseUrl/chat/completions"

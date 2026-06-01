@@ -44,6 +44,7 @@ class AiClientRepositoryImpl @Inject constructor(
                     baseUrl = baseUrl,
                     modelName = modelName,
                     messages = messages,
+                    provider = provider,
                     temperature = temperature,
                     maxTokens = maxTokens,
                     enableThinking = enableThinking,

@@ -12,7 +12,7 @@
 | Gemini | generativelanguage.googleapis.com/v1beta | gemini-2.0-flash | - | OpenAI |
 | 通义千问 | dashscope.aliyuncs.com/compatible-mode/v1 | qwen-plus | qwq-plus | OpenAI |
 | 智谱 GLM | open.bigmodel.cn/api/paas/v4 | glm-4-flash | - | OpenAI |
-| MiMo | api.xiaomimimo.com/v1 | mimo-v2 | mimo-v2-thinking | OpenAI |
+| MiMo | api.xiaomimimo.com/v1 | mimo-v2.5-pro | mimo-v2.5-pro (thinking) | OpenAI |
 | 自定义 | - | - | - | OpenAI |
 
 ## 功能
@@ -27,10 +27,10 @@
 
 ## 思考模式说明
 
-- **DeepSeek**: 使用 `thinking: {type: "enabled"}` + `reasoning_effort` 参数，流式返回 `reasoning_content`
+- **DeepSeek**: 使用 `thinking: {type: "enabled"}` + `reasoning_effort` (low/medium/high)，流式返回 `reasoning_content`
 - **Claude**: 使用 `extended-thinking` beta，流式返回 thinking block
 - **Qwen**: 使用 qwq-plus 模型，OpenAI 兼容格式
-- **MiMo**: 使用 mimo-v2-thinking 模型，OpenAI 兼容格式
+- **MiMo**: 使用 `thinking: {type: "enabled"}` 参数，使用 `max_completion_tokens`，流式返回 `reasoning_content`
 
 ## 技术栈
 

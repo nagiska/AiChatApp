@@ -34,7 +34,7 @@ data class ApiKeyConfig(
             AIProvider.GEMINI -> "gemini-2.0-flash"
             AIProvider.QWEN -> "qwen-plus"
             AIProvider.ZHIPU -> "glm-4-flash"
-            AIProvider.MIMO -> "mimo-v2"
+            AIProvider.MIMO -> "mimo-v2.5-pro"
             AIProvider.CUSTOM -> ""
         }
 
@@ -42,7 +42,7 @@ data class ApiKeyConfig(
             AIProvider.DEEPSEEK -> "deepseek-v4-pro"
             AIProvider.CLAUDE -> "claude-sonnet-4-20250514"
             AIProvider.QWEN -> "qwq-plus"
-            AIProvider.MIMO -> "mimo-v2-thinking"
+            AIProvider.MIMO -> "mimo-v2.5-pro"
             else -> ""
         }
 
