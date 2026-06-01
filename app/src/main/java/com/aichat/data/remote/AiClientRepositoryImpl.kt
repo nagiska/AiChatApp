@@ -4,11 +4,8 @@ import com.aichat.domain.model.AIProvider
 import com.aichat.domain.model.ChatMessage
 import com.aichat.domain.repository.AiClientRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class AiClientRepositoryImpl @Inject constructor(
+class AiClientRepositoryImpl(
     private val openAiClient: OpenAiClient,
     private val claudeClient: ClaudeClient
 ) : AiClientRepository {

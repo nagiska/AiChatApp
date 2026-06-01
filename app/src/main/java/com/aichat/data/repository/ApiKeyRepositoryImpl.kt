@@ -8,11 +8,8 @@ import com.aichat.domain.model.ThinkingIntensity
 import com.aichat.domain.repository.ApiKeyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ApiKeyRepositoryImpl @Inject constructor(
+class ApiKeyRepositoryImpl(
     private val apiKeyDao: ApiKeyDao
 ) : ApiKeyRepository {
 

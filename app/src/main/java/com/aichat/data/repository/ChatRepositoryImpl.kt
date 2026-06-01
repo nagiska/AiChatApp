@@ -10,11 +10,8 @@ import com.aichat.domain.model.MessageRole
 import com.aichat.domain.repository.ChatRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ChatRepositoryImpl @Inject constructor(
+class ChatRepositoryImpl(
     private val conversationDao: ConversationDao,
     private val messageDao: MessageDao
 ) : ChatRepository {
