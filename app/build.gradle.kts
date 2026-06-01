@@ -93,5 +93,4 @@ dependencies {
 
     // Markdown Renderer
     implementation(libs.markdown.renderer)
-    implementation(libs.markdown.code)
 }
