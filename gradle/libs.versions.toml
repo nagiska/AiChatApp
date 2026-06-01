@@ -15,6 +15,7 @@ coroutines = "1.9.0"
 coreKtx = "1.15.0"
 activityCompose = "1.9.3"
 coil = "2.7.0"
+markdown = "0.41.0"
 
 [libraries]
 # Compose BOM
@@ -65,6 +66,10 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 # Coil (image loading)
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# Markdown Renderer
+markdown-renderer = { group = "com.mikepenz", name = "multiplatform-markdown-renderer-m3", version.ref = "markdown" }
+markdown-code = { group = "com.mikepenz", name = "multiplatform-markdown-renderer-code", version.ref = "markdown" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

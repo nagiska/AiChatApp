@@ -19,6 +19,8 @@
 
 - 多 AI 厂商支持，独立配置 API Key / Base URL / 模型
 - 流式输出对话
+- Markdown 渲染 (标题、列表、代码块、表格、链接、加粗、斜体)
+- 代码语法高亮 (可选)
 - 温度调节 (0.0 - 2.0)
 - 思考强度控制 (低/中/高 → reasoning_effort: low/medium/high)
 - 思考输出开关 (显示/隐藏模型推理过程)
@@ -40,6 +42,7 @@
 - Room (本地存储)
 - Ktor (网络请求)
 - Kotlinx Serialization
+- multiplatform-markdown-renderer v0.41.0 (Markdown 渲染)
 
 ## 构建
 

@@ -94,4 +94,8 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+
+    // Markdown Renderer
+    implementation(libs.markdown.renderer)
+    implementation(libs.markdown.code)
 }
