@@ -15,6 +15,7 @@ interface AiClientRepository {
         temperature: Float = 0.7f,
         maxTokens: Int = 4096,
         enableThinking: Boolean = false,
-        thinkingBudget: Int = 4096
+        thinkingBudget: Int = 4096,
+        reasoningEffort: String = "medium"
     ): Flow<StreamResult>
 }

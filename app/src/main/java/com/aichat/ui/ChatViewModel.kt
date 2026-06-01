@@ -134,6 +134,12 @@ class ChatViewModel @Inject constructor(
                 val enableThinking = config.showThinking &&
                     ApiKeyConfig.supportsThinking(conversation.provider)
 
+                val reasoningEffort = when (config.thinkingIntensity) {
+                    com.aichat.domain.model.ThinkingIntensity.LOW -> "low"
+                    com.aichat.domain.model.ThinkingIntensity.MEDIUM -> "medium"
+                    com.aichat.domain.model.ThinkingIntensity.HIGH -> "high"
+                }
+
                 aiClientRepository.sendMessage(
                     provider = conversation.provider,
                     apiKey = config.apiKey,
@@ -143,7 +149,8 @@ class ChatViewModel @Inject constructor(
                     temperature = config.temperature,
                     maxTokens = config.maxTokens,
                     enableThinking = enableThinking,
-                    thinkingBudget = (config.thinkingIntensity.temperature * 4096).toInt()
+                    thinkingBudget = (config.thinkingIntensity.temperature * 4096).toInt(),
+                    reasoningEffort = reasoningEffort
                 ).collect { result ->
                     if (result.content.isNotEmpty()) fullContent.append(result.content)
                     if (result.thinkingContent.isNotEmpty()) fullThinking.append(result.thinkingContent)

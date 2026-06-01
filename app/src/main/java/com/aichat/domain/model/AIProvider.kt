@@ -10,5 +10,6 @@ enum class AIProvider(val displayName: String, val icon: String) {
     GEMINI("Gemini", "🔴"),
     QWEN("通义千问", "🟣"),
     ZHIPU("智谱 GLM", "🟡"),
+    MIMO("MiMo", "🟤"),
     CUSTOM("自定义", "⚪")
 }

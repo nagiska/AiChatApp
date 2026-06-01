@@ -22,7 +22,8 @@ class AiClientRepositoryImpl @Inject constructor(
         temperature: Float,
         maxTokens: Int,
         enableThinking: Boolean,
-        thinkingBudget: Int
+        thinkingBudget: Int,
+        reasoningEffort: String
     ): Flow<StreamResult> {
         return when (provider) {
             AIProvider.CLAUDE -> {
@@ -44,7 +45,9 @@ class AiClientRepositoryImpl @Inject constructor(
                     modelName = modelName,
                     messages = messages,
                     temperature = temperature,
-                    maxTokens = maxTokens
+                    maxTokens = maxTokens,
+                    enableThinking = enableThinking,
+                    reasoningEffort = reasoningEffort
                 )
             }
         }

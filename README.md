@@ -4,25 +4,33 @@
 
 ## 支持的 AI 厂商
 
-| 厂商 | 默认模型 | 思考模型 | API 格式 |
-|------|---------|---------|---------|
-| OpenAI | gpt-4o | - | OpenAI |
-| Claude | claude-sonnet-4-20250514 | claude-sonnet-4-20250514 | Anthropic |
-| DeepSeek | deepseek-chat | deepseek-reasoner | OpenAI |
-| Gemini | gemini-2.0-flash | - | OpenAI |
-| 通义千问 | qwen-plus | qwq-plus | OpenAI |
-| 智谱 GLM | glm-4-flash | - | OpenAI |
-| 自定义 | - | - | OpenAI |
+| 厂商 | Base URL | 默认模型 | 思考模型 | API 格式 |
+|------|---------|---------|---------|---------|
+| OpenAI | api.openai.com/v1 | gpt-4o | - | OpenAI |
+| Claude | api.anthropic.com/v1 | claude-sonnet-4-20250514 | ✓ | Anthropic |
+| DeepSeek | api.deepseek.com | deepseek-v4-flash | deepseek-v4-pro | OpenAI |
+| Gemini | generativelanguage.googleapis.com/v1beta | gemini-2.0-flash | - | OpenAI |
+| 通义千问 | dashscope.aliyuncs.com/compatible-mode/v1 | qwen-plus | qwq-plus | OpenAI |
+| 智谱 GLM | open.bigmodel.cn/api/paas/v4 | glm-4-flash | - | OpenAI |
+| MiMo | api.xiaomimimo.com/v1 | mimo-v2 | mimo-v2-thinking | OpenAI |
+| 自定义 | - | - | - | OpenAI |
 
 ## 功能
 
 - 多 AI 厂商支持，独立配置 API Key / Base URL / 模型
 - 流式输出对话
 - 温度调节 (0.0 - 2.0)
-- 思考强度控制 (低/中/高)
+- 思考强度控制 (低/中/高 → reasoning_effort: low/medium/high)
 - 思考输出开关 (显示/隐藏模型推理过程)
-- 对话历史本地存储
+- 对话历史本地存储 (Room)
 - MIUI/HyperOS 风格 UI (Miuix)
+
+## 思考模式说明
+
+- **DeepSeek**: 使用 `thinking: {type: "enabled"}` + `reasoning_effort` 参数，流式返回 `reasoning_content`
+- **Claude**: 使用 `extended-thinking` beta，流式返回 thinking block
+- **Qwen**: 使用 qwq-plus 模型，OpenAI 兼容格式
+- **MiMo**: 使用 mimo-v2-thinking 模型，OpenAI 兼容格式
 
 ## 技术栈
 
