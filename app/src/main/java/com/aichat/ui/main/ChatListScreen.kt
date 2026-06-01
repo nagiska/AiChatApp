@@ -31,6 +31,7 @@ import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+import androidx.compose.material3.MaterialTheme
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -66,7 +67,7 @@ fun ChatListScreen(
                 ) {
                     Text(
                         text = "暂无对话，点击上方按钮创建",
-                        color = MiuixTheme.colorScheme.onSurfaceVariant,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 14.sp
                     )
                 }
@@ -125,7 +126,7 @@ private fun ConversationItem(
                 Text(
                     text = "${conversation.provider.displayName} · ${dateFormat.format(Date(conversation.updatedAt))}",
                     fontSize = 12.sp,
-                    color = MiuixTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
             Button(onClick = onDelete) {

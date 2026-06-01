@@ -33,6 +33,7 @@ import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextField
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun SettingsScreen(
@@ -137,7 +138,7 @@ private fun ApiProviderCard(
                 Text(
                     text = "未配置 - 点击添加",
                     fontSize = 13.sp,
-                    color = MiuixTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = onEdit) {
@@ -156,7 +157,7 @@ private fun InfoRow(label: String, value: String) {
         Text(
             text = "$label: ",
             fontSize = 13.sp,
-            color = MiuixTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = value,
@@ -240,7 +241,7 @@ private fun ApiKeyEditDialog(
                     Text(
                         text = "思考模型: $thinkingModel",
                         fontSize = 11.sp,
-                        color = MiuixTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
 
@@ -257,11 +258,11 @@ private fun ApiKeyEditDialog(
                 Row(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("精确", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceVariant)
+                    Text("精确", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(modifier = Modifier.weight(1f))
-                    Text("平衡", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceVariant)
+                    Text("平衡", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(modifier = Modifier.weight(1f))
-                    Text("创造", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceVariant)
+                    Text("创造", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -287,7 +288,7 @@ private fun ApiKeyEditDialog(
                                     Text(
                                         text = "显示模型的推理过程",
                                         fontSize = 12.sp,
-                                        color = MiuixTheme.colorScheme.onSurfaceVariant
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
                                 Switch(
