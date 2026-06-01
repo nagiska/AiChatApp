@@ -137,7 +137,7 @@ private fun ApiProviderCard(
                 Text(
                     text = "未配置 - 点击添加",
                     fontSize = 13.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MiuixTheme.colorScheme.onSurfaceSecondary
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Button(onClick = onEdit) {
@@ -156,7 +156,7 @@ private fun InfoRow(label: String, value: String) {
         Text(
             text = "$label: ",
             fontSize = 13.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MiuixTheme.colorScheme.onSurfaceSecondary
         )
         Text(
             text = value,
@@ -240,7 +240,7 @@ private fun ApiKeyEditDialog(
                     Text(
                         text = "思考模型: $thinkingModel",
                         fontSize = 11.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MiuixTheme.colorScheme.onSurfaceSecondary
                     )
                 }
 
@@ -257,11 +257,11 @@ private fun ApiKeyEditDialog(
                 Row(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("精确", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("精确", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceSecondary)
                     Spacer(modifier = Modifier.weight(1f))
-                    Text("平衡", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("平衡", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceSecondary)
                     Spacer(modifier = Modifier.weight(1f))
-                    Text("创造", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("创造", fontSize = 11.sp, color = MiuixTheme.colorScheme.onSurfaceSecondary)
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -287,7 +287,7 @@ private fun ApiKeyEditDialog(
                                     Text(
                                         text = "显示模型的推理过程",
                                         fontSize = 12.sp,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        color = MiuixTheme.colorScheme.onSurfaceSecondary
                                     )
                                 }
                                 Switch(

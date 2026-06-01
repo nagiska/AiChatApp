@@ -62,8 +62,8 @@ fun MessageBubble(
                     )
                 )
                 .background(
-                    if (isUser) MaterialTheme.colorScheme.primary.copy(alpha = 0.9f)
-                    else MaterialTheme.colorScheme.surfaceVariant
+                    if (isUser) MiuixTheme.colorScheme.primary.copy(alpha = 0.9f)
+                    else MiuixTheme.colorScheme.surfaceVariant
                 )
                 .padding(12.dp)
         ) {
@@ -111,7 +111,7 @@ fun StreamingBubble(
                             bottomEnd = 16.dp
                         )
                     )
-                    .background(MaterialTheme.colorScheme.surfaceVariant)
+                    .background(MiuixTheme.colorScheme.surfaceVariant)
                     .padding(12.dp)
             ) {
                 Markdown(
@@ -135,7 +135,7 @@ private fun ThinkingBlock(
             .fillMaxWidth()
             .padding(end = 48.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+            .background(MiuixTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
             .clickable { expanded.value = !expanded.value }
             .padding(10.dp)
     ) {
@@ -143,13 +143,13 @@ private fun ThinkingBlock(
             androidx.compose.material3.Text(
                 text = if (isStreaming) "思考中..." else "思考过程",
                 fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                color = MiuixTheme.colorScheme.onSurfaceSecondary.copy(alpha = 0.7f)
             )
             Spacer(modifier = Modifier.width(4.dp))
             androidx.compose.material3.Text(
                 text = if (expanded.value) "收起" else "展开",
                 fontSize = 11.sp,
-                color = MaterialTheme.colorScheme.primary
+                color = MiuixTheme.colorScheme.primary
             )
         }
 
@@ -163,7 +163,7 @@ private fun ThinkingBlock(
                 androidx.compose.material3.Text(
                     text = thinkingContent,
                     fontSize = 13.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
+                    color = MiuixTheme.colorScheme.onSurfaceSecondary.copy(alpha = 0.8f),
                     fontStyle = FontStyle.Italic
                 )
             }
@@ -174,7 +174,7 @@ private fun ThinkingBlock(
             androidx.compose.material3.Text(
                 text = thinkingContent.take(80) + if (thinkingContent.length > 80) "..." else "",
                 fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                color = MiuixTheme.colorScheme.onSurfaceSecondary.copy(alpha = 0.5f),
                 maxLines = 1
             )
         }

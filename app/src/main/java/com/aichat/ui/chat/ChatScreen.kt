@@ -86,7 +86,7 @@ fun ChatScreen(
                         ) {
                             Text(
                                 text = "发送消息开始对话",
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                color = MiuixTheme.colorScheme.onSurfaceSecondary,
                                 fontSize = 14.sp
                             )
                         }
@@ -97,7 +97,7 @@ fun ChatScreen(
             if (uiState.error != null) {
                 Text(
                     text = uiState.error ?: "",
-                    color = MaterialTheme.colorScheme.error,
+                    color = MiuixTheme.colorScheme.error,
                     fontSize = 12.sp,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
                 )
@@ -119,7 +119,7 @@ fun ChatScreen(
                 Text(
                     text = "${uiState.messages.size} 条消息",
                     fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MiuixTheme.colorScheme.onSurfaceSecondary
                 )
             }
 

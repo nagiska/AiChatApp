@@ -67,7 +67,7 @@ fun ChatListScreen(
                 ) {
                     Text(
                         text = "暂无对话，点击上方按钮创建",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = MiuixTheme.colorScheme.onSurfaceSecondary,
                         fontSize = 14.sp
                     )
                 }
@@ -126,7 +126,7 @@ private fun ConversationItem(
                 Text(
                     text = "${conversation.provider.displayName} · ${dateFormat.format(Date(conversation.updatedAt))}",
                     fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MiuixTheme.colorScheme.onSurfaceSecondary
                 )
             }
             Button(onClick = onDelete) {
