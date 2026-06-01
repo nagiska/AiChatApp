@@ -139,11 +139,19 @@ class ChatViewModel(
                     ThinkingIntensity.HIGH -> "high"
                 }
 
+                val effectiveModel = if (enableThinking) {
+                    ApiKeyConfig.thinkingModel(conversation.provider).ifBlank {
+                        conversation.modelName.ifBlank { config.modelName }
+                    }
+                } else {
+                    conversation.modelName.ifBlank { config.modelName }
+                }
+
                 aiClientRepository.sendMessage(
                     provider = conversation.provider,
                     apiKey = config.apiKey,
                     baseUrl = config.baseUrl.ifBlank { ApiKeyConfig.defaultBaseUrl(conversation.provider) },
-                    modelName = conversation.modelName.ifBlank { config.modelName },
+                    modelName = effectiveModel,
                     messages = allMessages,
                     temperature = config.temperature,
                     maxTokens = config.maxTokens,

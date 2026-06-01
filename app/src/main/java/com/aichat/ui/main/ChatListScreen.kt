@@ -50,7 +50,7 @@ fun ChatListScreen(
             TopAppBar(title = "AI Chat")
         }
     ) {
-        Column(modifier = Modifier.fillMaxSize().padding(it)) {
+        Column(modifier = Modifier.fillMaxSize()) {
             Button(
                 onClick = { showNewChatDialog = true },
                 modifier = Modifier

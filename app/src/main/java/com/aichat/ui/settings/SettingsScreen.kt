@@ -48,11 +48,10 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(title = "设置")
         }
-    ) { paddingValues ->
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp)
         ) {

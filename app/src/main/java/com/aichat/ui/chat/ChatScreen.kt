@@ -50,8 +50,8 @@ fun ChatScreen(
         topBar = {
             TopAppBar(title = conversation?.title ?: "对话")
         }
-    ) { paddingValues ->
-        Column(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 state = listState,
                 modifier = Modifier

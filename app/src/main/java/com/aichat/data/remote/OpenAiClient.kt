@@ -39,6 +39,14 @@ class OpenAiClient(private val httpClient: HttpClient) {
         reasoningEffort: String = "medium"
     ): Flow<StreamResult> = flow {
         val isMiMo = provider == AIProvider.MIMO
+        val isDeepSeek = provider == AIProvider.DEEPSEEK
+
+        val dsReasoningEffort = when {
+            !isDeepSeek -> null
+            reasoningEffort in listOf("low", "medium") -> "high"
+            reasoningEffort == "high" -> "high"
+            else -> "max"
+        }
 
         val request = ChatRequest(
             model = modelName,
@@ -52,12 +60,12 @@ class OpenAiClient(private val httpClient: HttpClient) {
                     content = it.content
                 )
             },
-            temperature = if (enableThinking) 1.0 else temperature.toDouble(),
+            temperature = if (enableThinking && isDeepSeek) null else if (enableThinking) 1.0 else temperature.toDouble(),
             maxTokens = if (isMiMo) null else maxTokens,
             maxCompletionTokens = if (isMiMo) maxTokens else null,
             topP = if (isMiMo) 0.95 else null,
             thinking = if (enableThinking) ThinkingConfig(type = "enabled") else null,
-            reasoningEffort = if (enableThinking && !isMiMo) reasoningEffort else null
+            reasoningEffort = if (enableThinking) (dsReasoningEffort ?: reasoningEffort) else null
         )
 
         val url = "$baseUrl/chat/completions"
