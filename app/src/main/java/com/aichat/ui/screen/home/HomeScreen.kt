@@ -106,7 +106,7 @@ private fun ConversationList(
                     imageVector = Icons.Default.ChatBubbleOutline,
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
-                    tint = MiuixTheme.colorScheme.onSurfaceVariant
+                    tint = MiuixTheme.colorScheme.onSurfaceVariantSummary
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
