@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import top.yukonga.miuix.kmp.basic.*
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 
-// 首页 - 会话列表
 @Composable
 fun HomeScreen(
     onNavigateToChat: (String) -> Unit,
@@ -41,7 +40,7 @@ fun HomeScreen(
                 NavigationBarItem(
                     selected = selectedTab == 0,
                     onClick = { selectedTab = 0 },
-                    icon = { Icon(Icons.Default.Chat, "会话") },
+                    icon = Icons.Default.Chat,
                     label = "会话"
                 )
                 NavigationBarItem(
@@ -50,7 +49,7 @@ fun HomeScreen(
                         selectedTab = 1
                         onNavigateToAgents()
                     },
-                    icon = { Icon(Icons.Default.SmartToy, "Agent") },
+                    icon = Icons.Default.SmartToy,
                     label = "Agent"
                 )
                 NavigationBarItem(
@@ -59,7 +58,7 @@ fun HomeScreen(
                         selectedTab = 2
                         onNavigateToSettings()
                     },
-                    icon = { Icon(Icons.Default.Settings, "设置") },
+                    icon = Icons.Default.Settings,
                     label = "设置"
                 )
             }
