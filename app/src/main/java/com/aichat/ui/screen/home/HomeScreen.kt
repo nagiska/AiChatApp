@@ -38,7 +38,6 @@ fun HomeScreen(
         },
         bottomBar = {
             NavigationBar {
-                // 使用 Miuix 的 NavigationBarItem
                 NavigationBarItem(
                     selected = selectedTab == 0,
                     onClick = { selectedTab = 0 },
@@ -71,19 +70,16 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // 会话列表内容
             ConversationList(
                 onConversationClick = { conversationId ->
                     onNavigateToChat(conversationId)
                 }
             )
 
-            // 新建会话对话框
             if (showNewChatDialog) {
                 NewChatDialog(
                     onDismiss = { showNewChatDialog = false },
                     onCreate = { title, providerId, model ->
-                        // TODO: 创建新会话
                         showNewChatDialog = false
                     }
                 )
@@ -92,16 +88,13 @@ fun HomeScreen(
     }
 }
 
-// 会话列表组件
 @Composable
 private fun ConversationList(
     onConversationClick: (String) -> Unit
 ) {
-    // TODO: 从 ViewModel 获取会话列表
     val conversations = remember { emptyList<String>() }
 
     if (conversations.isEmpty()) {
-        // 空状态
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -113,7 +106,7 @@ private fun ConversationList(
                     imageVector = Icons.Default.ChatBubbleOutline,
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
-                    tint = MiuixTheme.colorScheme.onSurfaceVariantSummary
+                    tint = MiuixTheme.colorScheme.onSurfaceVariant
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
@@ -128,7 +121,6 @@ private fun ConversationList(
             }
         }
     } else {
-        // 会话列表
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),
@@ -144,7 +136,6 @@ private fun ConversationList(
     }
 }
 
-// 会话列表项组件
 @Composable
 private fun ConversationItem(
     conversation: String,
@@ -176,7 +167,6 @@ private fun ConversationItem(
     }
 }
 
-// 新建会话对话框
 @Composable
 private fun NewChatDialog(
     onDismiss: () -> Unit,
@@ -184,8 +174,8 @@ private fun NewChatDialog(
 ) {
     var title by remember { mutableStateOf("") }
 
-    // 使用 Miuix 的 Dialog
-    Dialog(
+    OverlayDialog(
+        visible = remember { mutableStateOf(true) },
         onDismissRequest = onDismiss
     ) {
         Card {
