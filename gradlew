@@ -6,11 +6,25 @@
 #
 ##############################################################################
 
-# Add default JVM options here.
-DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+# Attempt to set APP_HOME
+# Resolve links: $0 may be a link
+app_path=$0
+while
+    APP_HOME=${app_path%"${app_path##*/}"}
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld -- "$app_path" )
+    link=${ls#*' -> '}
+    case $link in
+      /*)   app_path=$link ;;
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+APP_HOME=$( cd "${APP_HOME:-./}" > /dev/null && pwd -P ) || exit
 
 APP_NAME="Gradle"
-APP_BASE_NAME=$(basename "$0")
+APP_BASE_NAME=${0##*/}
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum
@@ -25,6 +39,20 @@ die () {
     echo
     exit 1
 } >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in
+  CYGWIN* )         cygwin=true  ;;
+  Darwin* )         darwin=true  ;;
+  MSYS* | MINGW* )  msys=true    ;;
+  NonStop* )        nonstop=true ;;
+esac
+
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
@@ -66,16 +94,22 @@ if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
     esac
 fi
 
-# Collect all arguments for the java command, stracks://am the
+# Collect all arguments for the java command, stracking://am the
 # temporary files for the classpath.
-CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+fi
 
-# Determine the Java command to use to start the JVM.
-exec "$JAVACMD" \
-    $DEFAULT_JVM_OPTS \
-    $JAVA_OPTS \
-    $GRADLE_OPTS \
-    "-Dorg.gradle.appname=$APP_BASE_NAME" \
-    -classpath "$CLASSPATH" \
-    org.gradle.wrapper.GradleWrapperMain \
-    "$@"
+# Escape application args
+save () {
+    for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done
+    echo " "
+}
+APP_ARGS=$(save "$@")
+
+# Collect all arguments for the java command
+eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
+
+exec "$JAVACMD" "$@"
