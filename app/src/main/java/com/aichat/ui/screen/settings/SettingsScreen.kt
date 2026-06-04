@@ -1,11 +1,13 @@
 package com.aichat.ui.screen.settings
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import top.yukonga.miuix.kmp.basic.*
@@ -49,18 +51,53 @@ fun SettingsScreen(
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column {
-                    SwitchPreference(
-                        title = "深色模式",
-                        summary = "跟随系统或手动切换",
-                        checked = false,
-                        onCheckedChange = { /* TODO */ }
-                    )
-                    ArrowPreference(
-                        title = "主题颜色",
-                        summary = "跟随系统",
-                        onClick = { /* TODO */ }
-                    )
+                Column(modifier = Modifier.padding(16.dp)) {
+                    var isDarkMode by remember { mutableStateOf(false) }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                text = "深色模式",
+                                style = MiuixTheme.textStyles.body1
+                            )
+                            Text(
+                                text = "跟随系统或手动切换",
+                                style = MiuixTheme.textStyles.body2
+                            )
+                        }
+                        Switch(
+                            checked = isDarkMode,
+                            onCheckedChange = { isDarkMode = it }
+                        )
+                    }
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { /* TODO */ },
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                text = "主题颜色",
+                                style = MiuixTheme.textStyles.body1
+                            )
+                            Text(
+                                text = "跟随系统",
+                                style = MiuixTheme.textStyles.body2
+                            )
+                        }
+                        Icon(
+                            imageVector = Icons.Default.ChevronRight,
+                            contentDescription = null
+                        )
+                    }
                 }
             }
 
@@ -76,18 +113,24 @@ fun SettingsScreen(
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column {
-                    ArrowPreference(
+                Column(modifier = Modifier.padding(16.dp)) {
+                    SettingsItem(
                         title = "AI 供应商",
                         summary = "管理 API 配置",
                         onClick = onNavigateToProviders
                     )
-                    ArrowPreference(
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    SettingsItem(
                         title = "默认模型",
                         summary = "GPT-4o",
                         onClick = { /* TODO */ }
                     )
-                    ArrowPreference(
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    SettingsItem(
                         title = "默认提示词",
                         summary = "设置系统提示词",
                         onClick = { /* TODO */ }
@@ -107,18 +150,24 @@ fun SettingsScreen(
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column {
-                    ArrowPreference(
+                Column(modifier = Modifier.padding(16.dp)) {
+                    SettingsItem(
                         title = "备份数据",
                         summary = "导出所有会话和设置",
                         onClick = { /* TODO */ }
                     )
-                    ArrowPreference(
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    SettingsItem(
                         title = "恢复数据",
                         summary = "从备份文件恢复",
                         onClick = { /* TODO */ }
                     )
-                    ArrowPreference(
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    SettingsItem(
                         title = "清除数据",
                         summary = "删除所有会话和设置",
                         onClick = { /* TODO */ }
@@ -138,13 +187,24 @@ fun SettingsScreen(
             Card(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column {
-                    ArrowPreference(
-                        title = "版本",
-                        summary = "1.0.0",
-                        onClick = { }
-                    )
-                    ArrowPreference(
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "版本",
+                            style = MiuixTheme.textStyles.body1
+                        )
+                        Text(
+                            text = "1.0.0",
+                            style = MiuixTheme.textStyles.body2
+                        )
+                    }
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    
+                    SettingsItem(
                         title = "开源许可",
                         summary = "Apache 2.0",
                         onClick = { /* TODO */ }
@@ -152,5 +212,35 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun SettingsItem(
+    title: String,
+    summary: String,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column {
+            Text(
+                text = title,
+                style = MiuixTheme.textStyles.body1
+            )
+            Text(
+                text = summary,
+                style = MiuixTheme.textStyles.body2
+            )
+        }
+        Icon(
+            imageVector = Icons.Default.ChevronRight,
+            contentDescription = null
+        )
     }
 }

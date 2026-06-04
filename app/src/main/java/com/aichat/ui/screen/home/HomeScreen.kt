@@ -38,11 +38,12 @@ fun HomeScreen(
         },
         bottomBar = {
             NavigationBar {
+                // 使用 Miuix 的 NavigationBarItem
                 NavigationBarItem(
                     selected = selectedTab == 0,
                     onClick = { selectedTab = 0 },
                     icon = { Icon(Icons.Default.Chat, "会话") },
-                    label = { Text("会话") }
+                    label = "会话"
                 )
                 NavigationBarItem(
                     selected = selectedTab == 1,
@@ -51,7 +52,7 @@ fun HomeScreen(
                         onNavigateToAgents()
                     },
                     icon = { Icon(Icons.Default.SmartToy, "Agent") },
-                    label = { Text("Agent") }
+                    label = "Agent"
                 )
                 NavigationBarItem(
                     selected = selectedTab == 2,
@@ -60,7 +61,7 @@ fun HomeScreen(
                         onNavigateToSettings()
                     },
                     icon = { Icon(Icons.Default.Settings, "设置") },
-                    label = { Text("设置") }
+                    label = "设置"
                 )
             }
         }
@@ -183,8 +184,8 @@ private fun NewChatDialog(
 ) {
     var title by remember { mutableStateOf("") }
 
-    OverlayDialog(
-        visible = remember { mutableStateOf(true) },
+    // 使用 Miuix 的 Dialog
+    Dialog(
         onDismissRequest = onDismiss
     ) {
         Card {
