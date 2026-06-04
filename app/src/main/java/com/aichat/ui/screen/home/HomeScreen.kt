@@ -174,41 +174,31 @@ private fun NewChatDialog(
     var title by remember { mutableStateOf("") }
 
     OverlayDialog(
-        visible = remember { mutableStateOf(true) },
+        title = "新建会话",
+        show = true,
         onDismissRequest = onDismiss
     ) {
-        Card {
-            Column(
-                modifier = Modifier.padding(24.dp)
+        TextField(
+            value = title,
+            onValueChange = { title = it },
+            label = { Text("会话标题") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Button(
+                onClick = onDismiss
             ) {
-                Text(
-                    text = "新建会话",
-                    style = MiuixTheme.textStyles.title2
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                TextField(
-                    value = title,
-                    onValueChange = { title = it },
-                    label = { Text("会话标题") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(24.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Button(
-                        onClick = onDismiss
-                    ) {
-                        Text("取消")
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Button(
-                        onClick = { onCreate(title, "", "") }
-                    ) {
-                        Text("创建")
-                    }
-                }
+                Text("取消")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(
+                onClick = { onCreate(title, "", "") }
+            ) {
+                Text("创建")
             }
         }
     }
